@@ -11,7 +11,6 @@ services:
     environment:
       - NODE_ENV=production
       - COMPOSE_PROFILES=production
-      # No strictly needed but serving as hints for Coolify
       - PORT=5173
       - GROQ_API_KEY=${GROQ_API_KEY}
       - HuggingFace_API_KEY=${HuggingFace_API_KEY}
@@ -30,8 +29,6 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     command: pnpm run dockerstart
-    profiles:
-      - production
 
   app-dev:
     image: henrique-nhrl/meu-bolt-ai:development
@@ -71,4 +68,3 @@ services:
     ports:
       - "5173:5173"
     command: pnpm run dev --host 0.0.0.0
-    profiles: ["development", "default"]
