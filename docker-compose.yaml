@@ -5,12 +5,12 @@ services:
     image: traefik:v2.11
     container_name: traefik
     ports:
-      - "80:80"    # Porta HTTP
-      - "443:443"  # Porta HTTPS
+      - "8080:80"    # Porta HTTP mapeada para 8080 no host
+      - "8443:443"   # Porta HTTPS mapeada para 8443 no host
     networks:
-      - easypanel  # Alterado para a rede externa já existente
+      - easypanel  # Rede externa existente
     command:
-      - "--api.insecure=true"  # Habilitar dashboard para visualização (opcional)
+      - "--api.insecure=true"
       - "--providers.docker=true"
       - "--entrypoints.http.address=:80"
       - "--entrypoints.https.address=:443"
@@ -26,9 +26,9 @@ services:
       - COMPOSE_PROFILES=production
       - PORT=5173
     ports:
-      - "5173:5173"
+      - "5173:5173"  # Porta do app
     networks:
-      - easypanel  # Alterado para a rede externa já existente
+      - easypanel  # Rede externa do Traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app-prod.rule=Host(`bolt.henriquelr.com.br`)"
