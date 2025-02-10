@@ -1,6 +1,6 @@
 services:
   app-prod:
-    image: bolt-ai:production
+    image: henrique-nhrl/meu-bolt-ai:production
     build:
       context: .
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
       - production
 
   app-dev:
-    image: bolt-ai:development
+    image: henrique-nhrl/meu-bolt-ai:development
     build:
       target: bolt-ai-development
     env_file: ".env.local"
