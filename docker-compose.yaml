@@ -10,3 +10,10 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     command: pnpm run dockerstart
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app-prod.rule=Host(`bolt.henriquelr.com.br`)"
+      - "traefik.http.services.app-prod.loadbalancer.server.port=5173"
+      - "traefik.http.routers.app-prod.entrypoints=https"
+      - "traefik.http.routers.app-prod.tls=true"
+      - "traefik.http.routers.app-prod.tls.certresolver=letsencrypt"
