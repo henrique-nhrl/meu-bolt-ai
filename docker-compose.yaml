@@ -8,7 +8,7 @@ services:
       - "80:80"    # Porta HTTP
       - "443:443"  # Porta HTTPS
     networks:
-      - traefik
+      - easypanel  # Alterado para a rede externa já existente
     command:
       - "--api.insecure=true"  # Habilitar dashboard para visualização (opcional)
       - "--providers.docker=true"
@@ -28,7 +28,7 @@ services:
     ports:
       - "5173:5173"
     networks:
-      - traefik  # Garantir que está na rede traefik
+      - easypanel  # Alterado para a rede externa já existente
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app-prod.rule=Host(`bolt.henriquelr.com.br`)"
@@ -41,5 +41,5 @@ services:
       - "host.docker.internal:host-gateway"
 
 networks:
-  traefik:
-    external: false  # Defina como false para criar a rede no Docker
+  easypanel:
+    external: true  # Rede externa já existente
