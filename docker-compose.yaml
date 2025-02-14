@@ -6,7 +6,7 @@ services:
       - "8080:80"    # Porta HTTP mapeada para 8080 no host
       - "8443:443"   # Porta HTTPS mapeada para 8443 no host
     networks:
-      - easypanel  # Rede externa existente
+      - my_network  # Rede externa existente
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
@@ -26,7 +26,7 @@ services:
     ports:
       - "5173:5173"  # Porta do app
     networks:
-      - easypanel  # Rede externa do Traefik
+      - my_network  # Rede externa do Traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app-prod.rule=Host(`bolt1.henriquelr.com.br`)"
