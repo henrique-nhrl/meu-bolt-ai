@@ -39,5 +39,5 @@ services:
       - "host.docker.internal:host-gateway"
 
 networks:
-  easypanel:
+  my_network:
     external: true  # Rede externa já existente
